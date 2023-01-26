@@ -1,0 +1,72 @@
+#!/bin/bash
+#This test cases written covers and validates the terraform code on ecs-cluster with nginx service
+
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class TerraformTests {
+
+    @Test
+    public void testVpcId() {
+        String expected = "vpc-0f5e1af3931da4aa9";
+        String actual = aws_vpc.main.id;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSecurityGroupName() {
+        String expected = "alb_security_group";
+        String actual = aws_security_group.alb.name;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSubnetCidrBlock() {
+        String expected = "10.0.3.0/24";
+        String actual = aws_subnet.private.cidr_block;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testAlbName() {
+        String expected = "main";
+        String actual = aws_alb.main.name;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testEcsClusterName() {
+        String expected = "main";
+        String actual = aws_ecs_cluster.main.name;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testEcsTaskDefinitionFamily() {
+        String expected = "nginx";
+        String actual = aws_ecs_task_definition.nginx.family;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testEcsServiceName() {
+        String expected = "nginx";
+        String actual = aws_ecs_service.nginx.name;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testAlbTargetGroupName() {
+        String expected = "nginx";
+        String actual = aws_alb_target_group.nginx.name;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testS3BucketName() {
+        String expected = "et-bucket";
+        String actual = aws_s3_bucket.et_bucket.bucket;
+        assertEquals(expected, actual);
+    }
+}
+
